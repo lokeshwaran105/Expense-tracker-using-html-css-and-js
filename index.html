@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="heading">
+                <h1>Expense Tracker</h1>
+            </div>
+            <div class="input">
+                <span>
+                <input class="name" placeholder="maggi">
+                <input class="amount" placeholder="20">
+                <select class="category" placeholder="food">
+                    <option value="food">food</option>
+                    <option value="transport">transport</option>
+                </select>
+                <input class="date" type="date">
+                <button type="button" class="add" onclick="add()">Add Expense</button>
+            </span>
+            </div>
+            <div class="table">
+                <table>
+                    <tr>
+                        <th>Expense name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="footer">
+                <span><p>Filter By category</p>
+                <p>Total : <span>$50.00</span></p>
+                <select type="category" onchange="filter" placeholder="All">
+                    <option value="All">All</option>
+                    <option value="food" onchange="food()">food</option>
+                    <option value="transport">transport</option>
+                </select>
+            </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function add() {
+    
+    const name = document.getElementsByClassName("name")[0].value;
+    const amount = document.getElementsByClassName("amount")[0].value;  
+    const category = document.getElementsByClassName("category")[0].value;
+    const date = document.getElementsByClassName("date")[0].value;
+    const newrow = document.createElement("tr");
+    newrow.innerHTML = `
+      <td>${name}</td>
+      <td>${amount}</td>
+      <td>${category}</td>
+      <td>${date}</td>
+      <td><button onclick="deleteTransaction(this)">Delete</button></td>
+    `;
+    document.getElementsByTagName("table")[0].append(newrow);      
+  }
+  function deleteTransaction(button){
+    button.parentNode.parentNode.remove();
+  }
+    </script>
+</body>
+</html>
